@@ -1,0 +1,85 @@
+product_id,product_name,category,subcategory,brand,unit_price,cost_price
+PROD_001,Galaxy S23,electronics,phone,Samsung,115909.0,75340.85
+PROD_002,Galaxy A54,electronics,phone,Samsung,118717.0,77166.05
+PROD_003,Galaxy M34,electronics,phone,Samsung,60144.0,39093.6
+PROD_004,Galaxy F14,electronics,phone,Samsung,78462.0,51000.3
+PROD_005,iPhone 14,electronics,phone,Apple,81030.0,52669.5
+PROD_006,iPhone 13,electronics,phone,Apple,83758.0,54442.7
+PROD_007,iPhone 14 Pro,electronics,phone,Apple,50599.0,32889.35
+PROD_008,iPhone 12,electronics,phone,Apple,26399.0,17159.35
+PROD_009,Redmi Note 12,electronics,phone,Xiaomi,51967.0,33778.55
+PROD_010,Redmi Note 11,electronics,phone,Xiaomi,60503.0,39326.95
+PROD_011,Mi 11X,electronics,phone,Xiaomi,119205.0,77483.25
+PROD_012,Poco X5,electronics,phone,Xiaomi,115682.0,75193.3
+PROD_013,Crystal 4K 43,electronics,television,Samsung,134805.0,87623.25
+PROD_014,QLED 55,electronics,television,Samsung,90064.0,58541.6
+PROD_015,Frame TV 50,electronics,television,Samsung,140595.0,91386.75
+PROD_016,Mi TV 4X 43,electronics,television,Xiaomi,78416.0,50970.4
+PROD_017,Mi TV 5X 50,electronics,television,Xiaomi,105169.0,68359.85
+PROD_018,Mi QLED 55,electronics,television,Xiaomi,105303.0,68446.95
+PROD_019,Galaxy Book 2,electronics,laptop,Samsung,4535.5,128028.55
+PROD_020,Galaxy Book Pro,electronics,laptop,Samsung,4535.5,187921.5
+PROD_021,MacBook Air M1,electronics,laptop,Apple,4535.5,110371.3
+PROD_022,MacBook Air M2,electronics,laptop,Apple,4535.5,122619.9
+PROD_023,MacBook Pro 14,electronics,laptop,Apple,4535.5,142322.7
+PROD_024,Mi Notebook 14,electronics,laptop,Xiaomi,4535.5,141829.35
+PROD_025,Mi Notebook Pro,electronics,laptop,Xiaomi,133723.0,86919.95
+PROD_026,Original Fit Tee,clothing,t-shirts,Levis,2341.0,1521.65
+PROD_027,Graphic Tee,clothing,t-shirts,Levis,1879.0,1221.35
+PROD_028,Slim Fit Tee,clothing,t-shirts,Levis,2262.0,1470.3
+PROD_029,Classic Cotton Tee,clothing,t-shirts,Arrow,618.0,401.7
+PROD_030,Sport Tee,clothing,t-shirts,Arrow,1881.0,1222.65
+PROD_031,Basic Cotton Tee,clothing,t-shirts,Zara,1222.0,794.3
+PROD_032,Printed Tee,clothing,t-shirts,Zara,1541.0,1001.65
+PROD_033,Oversized Tee,clothing,t-shirts,Zara,1391.0,904.15
+PROD_034,Classic Western Shirt,clothing,shirts,Levis,4591.0,2984.15
+PROD_035,Slim Fit Shirt,clothing,shirts,Levis,4261.0,2769.65
+PROD_036,Formal Shirt,clothing,shirts,Arrow,4161.0,2704.65
+PROD_037,Casual Linen Shirt,clothing,shirts,Arrow,2424.0,1575.6
+PROD_038,Oxford Shirt,clothing,shirts,Arrow,2134.0,1387.1
+PROD_039,Printed Shirt,clothing,shirts,Zara,1174.0,763.1
+PROD_040,Linen Shirt,clothing,shirts,Zara,1175.0,763.75
+PROD_041,511 Slim,clothing,trousers,Levis,5401.0,3510.65
+PROD_042,501 Original,clothing,trousers,Levis,4304.0,2797.6
+PROD_043,514 Straight,clothing,trousers,Levis,3527.0,2292.55
+PROD_044,Formal Trousers,clothing,trousers,Arrow,4373.0,2842.45
+PROD_045,Chinos,clothing,trousers,Arrow,3719.0,2417.35
+PROD_046,Straight Fit Trouser,clothing,trousers,Zara,2740.0,1781.0
+PROD_047,Tapered Trouser,clothing,trousers,Zara,1209.0,785.85
+PROD_048,Denim Dress,clothing,dresses,Levis,5920.0,3848.0
+PROD_049,Shirt Dress,clothing,dresses,Levis,6442.0,4187.3
+PROD_050,Floral Midi Dress,clothing,dresses,Zara,3001.0,1950.65
+PROD_051,Wrap Dress,clothing,dresses,Zara,3264.0,2121.6
+PROD_052,Mini Dress,clothing,dresses,Zara,2238.0,1454.7
+PROD_053,Trucker Jacket,clothing,jackets,Levis,8644.0,5618.6
+PROD_054,Sherpa Jacket,clothing,jackets,Levis,1857.0,1207.05
+PROD_055,Blazer Jacket,clothing,jackets,Arrow,9159.0,5953.35
+PROD_056,Quilted Jacket,clothing,jackets,Arrow,5433.0,3531.45
+PROD_057,Bomber Jacket,clothing,jackets,Zara,9150.0,5947.5
+PROD_058,Trench Coat,clothing,jackets,Zara,2607.0,1694.55
+PROD_059,Puffer Jacket,clothing,jackets,Zara,4480.0,2912.0
+PROD_060,Whey Protein 1kg,sports & fitness,supplements,MuscleBlaze,1120.0,728.0
+PROD_061,Whey Protein 2kg,sports & fitness,supplements,MuscleBlaze,2576.0,1674.4
+PROD_062,Creatine 250g,sports & fitness,supplements,MuscleBlaze,2278.0,1480.7
+PROD_063,BCAA 250g,sports & fitness,supplements,MuscleBlaze,5239.0,3405.35
+PROD_064,Energy Bar Pack,sports & fitness,supplements,Decathlon,3871.0,2516.15
+PROD_065,Recovery Drink,sports & fitness,supplements,Decathlon,5151.0,3348.15
+PROD_066,Voltric 50,sports & fitness,rackets & equipment,Yonex,2771.0,1801.15
+PROD_067,Astrox 88S,sports & fitness,rackets & equipment,Yonex,14112.0,9172.8
+PROD_068,Nanoray 900,sports & fitness,rackets & equipment,Yonex,7021.0,4563.65
+PROD_069,Duora Z Strike,sports & fitness,rackets & equipment,Yonex,1686.0,1095.9
+PROD_070,Perfly BR 900,sports & fitness,rackets & equipment,Decathlon,9596.0,6237.4
+PROD_071,Artengo Tennis Racket,sports & fitness,rackets & equipment,Decathlon,11127.0,7232.55
+PROD_072,Kiprun Shoes,sports & fitness,footwear,Decathlon,3092.0,2009.8
+PROD_073,Kalenji Run Support,sports & fitness,footwear,Decathlon,9622.0,6254.3
+PROD_074,Newfeel Walking Shoe,sports & fitness,footwear,Decathlon,3773.0,2452.45
+PROD_075,Power Cushion 65Z,sports & fitness,footwear,Yonex,12136.0,7888.4
+PROD_076,SHB 65X2,sports & fitness,footwear,Yonex,11822.0,7684.3
+PROD_077,Resistance Band Set,sports & fitness,fitness accessories,MuscleBlaze,3959.0,2573.35
+PROD_078,Gym Gloves,sports & fitness,fitness accessories,MuscleBlaze,2106.0,1368.9
+PROD_079,Shaker Bottle,sports & fitness,fitness accessories,MuscleBlaze,2796.0,1817.4
+PROD_080,Yoga Mat,sports & fitness,fitness accessories,Decathlon,2670.0,1735.5
+PROD_081,Jump Rope,sports & fitness,fitness accessories,Decathlon,3812.0,2477.8
+PROD_082,Foam Roller,sports & fitness,fitness accessories,Decathlon,3234.0,2102.1
+PROD_083,Badminton Grip,sports & fitness,fitness accessories,Yonex,1149.0,746.85
+PROD_084,Shuttlecock Pack,sports & fitness,fitness accessories,Yonex,353.0,229.45
