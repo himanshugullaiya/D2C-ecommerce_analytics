@@ -1,0 +1,10 @@
+data/
+*.csv
+*.xlsx
+*.pbix
+__pycache__/
+*.pyc
+.env
+.ipynb_checkpoints/
+Thumbs.db
+.DS_Store
