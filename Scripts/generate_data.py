@@ -43,6 +43,7 @@ def generate_customers(n = 15000):   #list of dictionaries
         data.append(data_entry)
     return pd.DataFrame(data)
 
+print('Generating Customers \n')
 customers_df = generate_customers()
 customers_df.to_csv('../Data/Silver/customers.csv', index = False)
 
@@ -155,9 +156,10 @@ def generate_products():
                     counter += 1
                     all_products.append(data_entry)
     df = pd.DataFrame(all_products)
-    df['cost_price'] = round(df['unit_price'] * 0.65,2)           
+    df['cost_price'] = df['cost_price'] = (df['unit_price'] * np.random.uniform(0.40, 0.70, size=len(df))).round(2)         #vary the cost price to create realistic margins  
     return df
-                    
+
+print('Generating Products \n')                    
 products_df = generate_products()            
 products_df.to_csv('../Data/Silver/products.csv', index = False)
 
@@ -186,7 +188,8 @@ def generate_orders_with_items():
     active_customers = customers_df[customers_df['customer_id'].isin(customers_df['customer_id'].sample(frac = 0.85))][['customer_id', 'signup_date']]
     
     for index, customer_row in active_customers.iterrows():
-        total_orders = max(1, np.random.poisson(lam = 5))
+        print(f'\rWorking : {order_id}', end = " ", flush = True)
+        total_orders = max(1, np.random.poisson(lam = 8))
         
         for cust_ord in range(total_orders):
             curr_order = {
@@ -223,7 +226,7 @@ def generate_orders_with_items():
             
     return (pd.DataFrame(orders_list), pd.DataFrame(order_items_list))
                                                                                                           
-            
+print('Generating Orders \n')           
 orders_df, order_items_df = generate_orders_with_items()        
                 
 orders_df.to_csv('../Data/Silver/orders.csv', index = False)
@@ -249,12 +252,13 @@ def generate_returns():
         all_returns.append(return_row)
     return pd.DataFrame(all_returns)
 
+
+print('Generating Returns \n')
+
 return_orders = generate_returns()
-
-
 return_orders.to_csv('../Data/Silver/returns.csv', index=False)        
         
-        
+print('All Generated')
     
     
     
