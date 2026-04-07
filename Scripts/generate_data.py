@@ -220,7 +220,7 @@ def generate_orders_with_items():
             curr_order['payement_method'] = random.choice(['UPI','Card']) if order_total < 100000 else random.choice(['Card', 'Net Banking'])
             curr_order['order_amount'] = order_total
             curr_order['discount_amount'] = 0.15*order_total if random.random() < 0.3 else 0  #( 15% discount)
-            curr_order['net_amount'] = 0.85*order_total
+            curr_order['net_amount'] = order_total - curr_order['discount_amount']
             orders_list.append(curr_order)
             order_id += 1
             

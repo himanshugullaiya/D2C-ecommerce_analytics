@@ -70,10 +70,15 @@ def fix_invalid_data():
 #... Fixing orphan Records..#
 
 def fix_orphan_records():
-    global dirty_orders_df
+    global dirty_orders_df, dirty_order_items_df
     
     indices_to_remove = dirty_orders_df.loc[(~dirty_orders_df['customer_id'].isin(dirty_customers_df['customer_id'])), 'customer_id'].index
+    order_ids_to_remove = dirty_orders_df.loc[indices_to_remove, 'order_id']
+    
     dirty_orders_df = dirty_orders_df.drop(index = indices_to_remove).reset_index(drop = True)
+    dirty_order_items_df = dirty_order_items_df[~dirty_order_items_df['order_id'].isin(order_ids_to_remove)].reset_index(drop = True)
+    
+    dirty_orders_df = dirty_orders_df[dirty_orders_df['order_id'].isin(dirty_order_items_df['order_id'])].reset_index(drop = True)
     
 #... Fixing Outliers using IQR..#
 

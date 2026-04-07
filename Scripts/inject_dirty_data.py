@@ -94,6 +94,7 @@ def dirty_pipeline():
     inject_inconsistent_values()
     inject_invalid_values()
     inject_orphans()
+    inject_outliers()
     
 
 
