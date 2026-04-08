@@ -1,5 +1,5 @@
 ----------Cohort Analysis----------------------------------------####
-DROP MATERIALIZED VIEW IF EXISTS gold.cohort_retention;
+DROP MATERIALIZED VIEW IF EXISTS gold.cohort_retention cascade;
 
 CREATE MATERIALIZED VIEW gold.cohort_retention AS (
 

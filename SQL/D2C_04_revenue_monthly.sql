@@ -1,5 +1,5 @@
 
-DROP MATERIALIZED VIEW IF EXISTS gold.revenue_monthly;
+DROP MATERIALIZED VIEW IF EXISTS gold.revenue_monthly cascade;
 
 CREATE MATERIALIZED VIEW gold.revenue_monthly AS (
 	WITH base_metrics AS (

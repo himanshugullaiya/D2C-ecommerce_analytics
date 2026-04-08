@@ -1,5 +1,5 @@
 
-DROP MATERIALIZED VIEW IF EXISTS gold.returns_analysis;
+DROP MATERIALIZED VIEW IF EXISTS gold.returns_analysis cascade;
 
 CREATE MATERIALIZED VIEW gold.returns_analysis AS (
 

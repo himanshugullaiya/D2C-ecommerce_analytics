@@ -1,5 +1,5 @@
 ----------------RFM Query--------------------------------------#
-DROP MATERIALIZED VIEW IF EXISTS gold.rfm_segmentation;
+DROP MATERIALIZED VIEW IF EXISTS gold.rfm_segmentation cascade;
 
 CREATE MATERIALIZED VIEW gold.rfm_segmentation AS (
 

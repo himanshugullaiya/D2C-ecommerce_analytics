@@ -1,6 +1,6 @@
 -----------PRODUCT  PERFORMANCE------------##
 
-DROP MATERIALIZED VIEW IF EXISTS gold.product_performance ;
+DROP MATERIALIZED VIEW IF EXISTS gold.product_performance cascade ;
 
 CREATE MATERIALIZED VIEW gold.product_performance AS (
 

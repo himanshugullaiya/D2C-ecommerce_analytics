@@ -15,22 +15,7 @@ dirty_order_items_df= dirty_order_items_df.dropna(thresh = 4)
 dirty_products_df   = dirty_products_df.dropna(thresh = 4)
 dirty_returns_df    = dirty_returns_df.dropna(thresh = 4)
 
-#... Remove duplicate rows....#
-
-
-
-def remove_duplicates():
-    global dirty_customers_df
-    global dirty_orders_df
-    global dirty_order_items_df
-
-    dirty_customers_df.duplicated().value_counts() # No of true/false value
-    dirty_orders_df.duplicated().value_counts()    # No of true/false value
-    dirty_order_items_df.duplicated().value_counts()
     
-    dirty_customers_df = dirty_customers_df.drop_duplicates()
-    dirty_orders_df    = dirty_orders_df.drop_duplicates()
-    dirty_order_items_df = dirty_order_items_df.drop_duplicates()
     
 #... Fix formatting inconsistencies...#
 
@@ -112,14 +97,49 @@ def fix_outliers():
         (dirty_orders_df['order_amount'] > upper),
         'order_amount'
     ] = median_price
+    
+    
+#... Remove duplicate rows....#
+
+def remove_duplicates():
+    global dirty_customers_df
+    global dirty_orders_df
+    global dirty_order_items_df
+
+    print('Row Dups Check : \n')
+    dirty_customers_df.duplicated().value_counts() # No of true/false value
+    dirty_orders_df.duplicated().value_counts()    # No of true/false value
+    dirty_order_items_df.duplicated().value_counts()
+    
+    dirty_customers_df = dirty_customers_df.drop_duplicates()
+    dirty_orders_df    = dirty_orders_df.drop_duplicates()
+    dirty_order_items_df = dirty_order_items_df.drop_duplicates()
+    
+    print('Primary Key Dups Check : \n')
+    
+    dirty_customers_df['customer_id'].duplicated().value_counts()
+    dirty_orders_df['order_id'].duplicated().value_counts()
+    dirty_order_items_df['order_item_id'].duplicated().value_counts()
+    
+    #removing duplicate ids with imputed age    
+    mean_age = int(dirty_customers_df['age'].mean())
+    dup_customer_ids = dirty_customers_df.loc[dirty_customers_df['customer_id'].duplicated(), 'customer_id']  #find those id those are duplicated
+    dirty_customers_df = dirty_customers_df[~((dirty_customers_df['customer_id'].isin(dup_customer_ids)) & (dirty_customers_df['age'] == mean_age))].sort_values('customer_id')
+    
+    #fixing order_ids with wrong order_amount and duplicate order_ids
+    
+    dirty_orders_df = dirty_orders_df.drop_duplicates(subset = 'order_id', keep = 'first').copy()
+    dirty_orders_df['order_amount'] = dirty_orders_df['net_amount'] + dirty_orders_df['discount_amount']    
+    
 
 def clean_all():
-    remove_duplicates()
+    
     fix_formatting()
     fix_nulls()
     fix_invalid_data()
     fix_orphan_records()
     fix_outliers()
+    remove_duplicates()
     
 clean_all()
 
