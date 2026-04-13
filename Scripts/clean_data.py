@@ -71,18 +71,19 @@ def fix_outliers():
     global dirty_products_df, dirty_orders_df
     
     #Fix product unit_price outliers
-    q1 = dirty_products_df['unit_price'].quantile(0.25)
-    q3 = dirty_products_df['unit_price'].quantile(0.75)
-    IQR = q3 - q1
-    lower = q1 - 1.5 * IQR
-    upper = q3 + 1.5 * IQR
-    median_price = dirty_products_df['unit_price'].median()
-    dirty_products_df.loc[
-        (dirty_products_df['unit_price'] < lower) | 
-        (dirty_products_df['unit_price'] > upper), 
-        'unit_price'
-    ] = median_price
     
+    all_subcategories = dirty_products_df['subcategory'].unique().tolist()  # Fix outliers sub-category wise
+    for sub in all_subcategories:
+        sub_df = dirty_products_df[dirty_products_df['subcategory'] == sub].copy()
+        q1 = sub_df['unit_price'].quantile(0.25)
+        q3 = sub_df['unit_price'].quantile(0.75)
+        IQR = q3 - q1
+        lower = q1 - 1.5 * IQR
+        upper = q3 + 1.5 * IQR
+        median_price = sub_df['unit_price'].median()
+        sub_df.loc[((sub_df['unit_price'] < lower) | (sub_df['unit_price'] > upper)) , 'unit_price'] = median_price
+        dirty_products_df.update(sub_df)
+           
     
     #Fix order_amount outlier
     

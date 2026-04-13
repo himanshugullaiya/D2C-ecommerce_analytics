@@ -6,13 +6,15 @@ CREATE MATERIALIZED VIEW gold.product_performance AS (
 
 WITH base_metrics AS (
 	SELECT 
-		p.category, p.subcategory, p.product_name, p.brand, 
+		p.product_id, p.category, p.subcategory, p.product_name, p.brand,
 		
 		sum(oi.total_sales_curr_order) AS total_revenue,
 		
 		count(DISTINCT o.order_id) AS total_orders,
 		
 		sum(oi.qty) AS total_qty,
+		
+		sum(oi.qty * p.unit_price) AS total_unit_price,
 		
 		sum(oi.qty * p.cost_price) AS total_cost,
 		
@@ -29,7 +31,7 @@ WITH base_metrics AS (
 	JOIN silver.orders o   ON oi.order_id = o.order_id
 	RIGHT JOIN silver.products p ON p.product_id= oi.product_id
 	LEFT  JOIN silver.all_returns ar ON ar.order_id = o.order_id
-	GROUP BY 1,2,3,4
+	GROUP BY 1,2,3,4, 5
 	)
 
 SELECT *,
@@ -44,8 +46,6 @@ FROM base_metrics
 
 REFRESH MATERIALIZED VIEW gold.product_performance;
 
+------------------------------------------------------
+
 SELECT * FROM gold.product_performance;
-
-
-
-

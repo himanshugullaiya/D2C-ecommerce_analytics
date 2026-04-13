@@ -17,3 +17,7 @@ CREATE VIEW gold.v_returns_analysis AS SELECT * FROM gold.returns_analysis;
 CREATE VIEW gold.v_executive_kpis AS SELECT * FROM gold.executive_kpis;
 
 ---------------------------------------
+
+
+
+

@@ -22,6 +22,16 @@ def cleaned_city_state():
 
 def generate_customers(n = 15000):   #list of dictionaries
     city_df = cleaned_city_state()
+    
+    #....random weighted city...#
+    city_weights = city_df['city'].apply(lambda x: 
+        7 if x in ['Mumbai', 'Delhi', 'Bangalore', 'Hyderabad', 'Chennai'] 
+        else 4 if x in ['Pune', 'Ahmedabad', 'Kolkata', 'Jaipur', 'Surat']
+        else 1)
+ 
+    city_weights = city_weights / city_weights.sum()  # normalize to probabilities
+    city_row = city_df.sample(1, weights=city_weights).iloc[0]   
+      
     data = []
     for x in range(1,n+1):
         city_state = city_df.loc[random.choice(city_df.index)]
@@ -124,19 +134,19 @@ products_catalog = {
         }
 
 price_ranges = {
-        'phone':               (15000, 120000),
-        'laptop':              (50000, 300000),
-        'television':          (15000, 200000),
-        't-shirts':            (299,   2999),
-        'shirts':              (499,   4999),
-        'trousers':            (699,   5999),
-        'dresses':             (599,   6999),
-        'jackets':             (999,   9999),
-        'supplements':         (499,   6999),
-        'rackets & equipment': (299,   15000),
-        'footwear':            (999,   12999),
-        'fitness accessories': (199,   3999)
-    }
+    'phone':                (8000,   80000),
+    'laptop':               (35000,  120000),
+    'television':           (15000,  80000),
+    't-shirts':             (299,    2999),
+    'shirts':               (499,    4999),
+    'trousers':             (699,    5999),
+    'dresses':              (599,    6999),
+    'jackets':              (999,    9999),
+    'supplements':          (499,    6999),
+    'rackets & equipment':  (299,    15000),
+    'footwear':             (999,    12999),
+    'fitness accessories':  (199,    3999)
+}
 
 def generate_products():
     all_products = []
@@ -189,7 +199,7 @@ def generate_orders_with_items():
     
     for index, customer_row in active_customers.iterrows():
         print(f'\rWorking : {order_id}', end = " ", flush = True)
-        total_orders = max(1, np.random.poisson(lam = 8))
+        total_orders = max(1, np.random.poisson(lam = 10))
         
         for cust_ord in range(total_orders):
             curr_order = {
@@ -201,9 +211,31 @@ def generate_orders_with_items():
             
             order_total = 0
             
-            for order_item in range(1,random.randint(2,6)):
+            #...FIX for High AOV orders pulled by electronics...# -> 1 qty of electronic per order.....#
+            #...THE FIX : Resample : if in order_electronics subcategory, electronics is already picked -> choose other subcategory
+            
+            used_subcategories = []  # reset per order, tracks if electronics subcategories already added
+            
+            for order_item in range(1,random.randint(2,4)):
                 product_row_index = random.choices(products_df.index)[0]
-                random_qty = random.randint(1,5)
+                subcategory = products_df.loc[product_row_index]['subcategory']  # get subcategory of selected product
+                
+                # Keep resampling product if it is from electronics & it has already been chosen...#
+                attempts = 0
+                          
+                while subcategory in ['laptop', 'television', 'phone'] and subcategory in used_subcategories and attempts < 5:
+                    product_row_index = random.choices(products_df.index)[0]
+                    subcategory = products_df.loc[product_row_index]['subcategory']
+                    attempts += 1
+                used_subcategories.append(subcategory)  #... Mark this subcategory as used for this curr_order
+                
+                #.... Adjust qty per order_item to 1 if from high-value electronics
+                if subcategory in ['laptop', 'television']:
+                    random_qty = 1
+                elif subcategory == 'phone':
+                    random_qty = random.randint(1, 2)
+                else:
+                    random_qty = random.randint(1, 3)
                 
                 curr_order_item = {
                     'order_id' : curr_order['order_id'],
@@ -219,7 +251,7 @@ def generate_orders_with_items():
                 
             curr_order['payement_method'] = random.choice(['UPI','Card']) if order_total < 100000 else random.choice(['Card', 'Net Banking'])
             curr_order['order_amount'] = order_total
-            curr_order['discount_amount'] = 0.15*order_total if random.random() < 0.3 else 0  #( 15% discount)
+            curr_order['discount_amount'] = 0.15*order_total if random.random() < 0.3 else 0
             curr_order['net_amount'] = order_total - curr_order['discount_amount']
             orders_list.append(curr_order)
             order_id += 1

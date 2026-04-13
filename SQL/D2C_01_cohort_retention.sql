@@ -11,7 +11,7 @@ WITH foc AS (          --first order month  customer-wise
 ),
 
 customer_cohort AS (   --join cohort month to the orders table on customer_id and find the month difference from cohort
-	SELECT cohort_month, foc.customer_id ,
+	SELECT cohort_month, foc.customer_id , 
 	extract(YEAR FROM age(order_date, cohort_month))*12 + extract(MONTH FROM age(order_date, cohort_month)) AS total_months_from_cohort
 	FROM silver.orders JOIN foc ON silver.orders.customer_id = foc.customer_id
 ),
@@ -30,7 +30,7 @@ cohort_monthly_retention AS (
 	ORDER BY 1, 2,4
 	)
 
-SELECT *, block_count*1.0/cohort_size AS retention_pct_decimal
+SELECT cohort_month, to_char(cohort_month, 'FMMon YYYY') AS month_year, total_months_from_cohort, block_count, cohort_size, block_count*1.0/cohort_size AS retention_pct_decimal
 FROM cohort_monthly_retention
 
 );
@@ -40,5 +40,6 @@ REFRESH MATERIALIZED VIEW gold.cohort_retention;
 SELECT * FROM gold.cohort_retention;
 
 ---------------------------------------------------------------#
+
 
 
