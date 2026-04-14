@@ -6,10 +6,13 @@ CREATE MATERIALIZED VIEW gold.revenue_monthly AS (
 		SELECT 
 		to_char(o.order_date, 'FMMonth YYYY') AS month_year,
 		sum(oi.total_sales_curr_order) AS total_revenue,
+		sum(oi.qty * (p.unit_price - p.cost_price)) AS total_profit,
 		date_trunc('month', o.order_date) AS for_sorting,
 		count(DISTINCT o.order_id) AS total_orders,
 		count(DISTINCT o.customer_id) AS total_customers
-		FROM silver.order_items oi JOIN silver.orders o ON oi.order_id = o.order_id
+		FROM silver.order_items oi 
+		JOIN silver.orders o ON oi.order_id = o.order_id
+		JOIN silver.products p ON oi.product_id = p.product_id
 		GROUP BY date_trunc('month', o.order_date),1
 		ORDER BY date_trunc('month', o.order_date)
 	),
