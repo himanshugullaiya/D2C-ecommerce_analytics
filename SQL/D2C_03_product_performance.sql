@@ -24,7 +24,7 @@ WITH base_metrics AS (
 		 
 		count(DISTINCT ar.return_id) * 1.0/ NULLIF(count(DISTINCT o.order_id),0) AS return_rate_pct_decimal,
 		
-		rank() OVER (PARTITION BY p.category ORDER BY sum(oi.total_sales_curr_order)) AS revenue_rank_in_category
+		rank() OVER (PARTITION BY p.category ORDER BY sum(oi.total_sales_curr_order) desc) AS revenue_rank_in_category
 	
 	
 	FROM silver.order_items oi 

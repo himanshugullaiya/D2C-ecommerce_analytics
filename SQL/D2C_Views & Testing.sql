@@ -18,6 +18,3 @@ CREATE VIEW gold.v_executive_kpis AS SELECT * FROM gold.executive_kpis;
 
 ---------------------------------------
 
-
-
-

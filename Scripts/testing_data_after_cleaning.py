@@ -86,3 +86,15 @@ checker_cust = cleaned_customers_df.loc[cleaned_customers_df['customer_id'].isin
 
 dup_orders = cleaned_o_df.loc[cleaned_o_df['order_id'].duplicated(), 'order_id']
 checker_orders = cleaned_o_df.loc[cleaned_o_df['order_id'].isin(dup_orders)].sort_values(by = 'order_id')
+
+
+
+
+total_o_revenue = og_o_df['order_amount'].sum()
+total_oi_revenue= og_oi_df['total_sales_curr_order'].sum()
+
+dirty_o_df['order_amount'].sum()
+dirty_oi_df['total_sales_curr_order'].sum()
+
+cleaned_o_df['order_amount'].sum()
+cleaned_oi_df['total_sales_curr_order'].sum()
