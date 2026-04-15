@@ -268,22 +268,55 @@ order_items_df.to_csv('../Data/Silver/order_items.csv', index = False)
 
 def generate_returns():
     all_returns = []
-    returned_orders = orders_df[orders_df['order_status'] == 'Returned'][['order_id','order_date','customer_id', 'order_amount']].reset_index(drop = True)
+    returned_orders = orders_df[orders_df['order_status'] == 'Returned'][
+        ['order_id', 'order_date', 'customer_id', 'order_amount']
+    ].reset_index(drop=True)
+    
     total_returns = returned_orders.shape[0]
     pad_size = len(str(total_returns))
-    for x in range(0,total_returns):
+    
+    # Return reasons available per category
+    category_wise_return_reason = {
+        'electronics':      ['Bad Quality', 'Damaged', 'Wrong Product Delivered', 'No Longer Required', 'Color Mismatch'],
+        'sports & fitness': ['Bad Quality', 'Damaged', 'No Longer Required', 'Wrong Product Delivered', 'Color Mismatch'],
+        'clothing':         ['Bad Quality', 'Damaged', 'No Longer Required', 'Wrong Item Delivered', 'Color Mismatch', 'Size Issues']
+    }
+    
+    # Weights per reason per category — higher = more likely
+    category_wise_return_reason_weights = {
+        'electronics':      [3, 6, 1, 1, 1],   # Damaged most likely, Bad Quality next
+        'sports & fitness': [6, 3, 1, 3, 1],   # Bad Quality most likely
+        'clothing':         [3, 1, 1, 1, 6, 6] # Color Mismatch & Size Issues most likely
+    }
+    
+    for x in range(total_returns):
+        order_id = returned_orders['order_id'].iloc[x]
+        
+        # Get category for this order from order_items + products
+        # Fetch first product category in this order
+        order_products = order_items_df[order_items_df['order_id'] == order_id]['product_id'].values
+        if len(order_products) > 0:
+            category = products_df[products_df['product_id'] == order_products[0]]['category'].values[0]
+        else:
+            category = random.choice(list(category_wise_return_reason.keys()))
+        
+        # Pick weighted reason for this category
+        reasons = category_wise_return_reason[category]
+        weights = category_wise_return_reason_weights[category]
+        reason = random.choices(reasons, weights=weights, k=1)[0]
+        
         return_row = {
-            'return_id' : 'RET_'+f'{x+1:0{pad_size}d}',
-            'order_id' : returned_orders['order_id'].iloc[x],
-            'customer_id': returned_orders['customer_id'].iloc[x],
-            'return_date' : get_date(returned_orders['order_date'].iloc[x],0),
-            'return_reason': random.choice(['Bad Quality', 'Damaged', 'No Longer Required', 'Wrong Item Delivered', 'Color Mismatch', 'Size Issues']),
-            'return_amount' : returned_orders['order_amount'].iloc[x],
-            'return_status' : random.choice(['refund_in_process', 'refunded'])
-            }
+            'return_id':     'RET_' + f'{x+1:0{pad_size}d}',
+            'order_id':      order_id,
+            'customer_id':   returned_orders['customer_id'].iloc[x],
+            'return_date':   get_date(returned_orders['order_date'].iloc[x], 0),
+            'return_reason': reason,
+            'return_amount': returned_orders['order_amount'].iloc[x],
+            'return_status': random.choice(['refund_in_process', 'refunded'])
+        }
         all_returns.append(return_row)
+    
     return pd.DataFrame(all_returns)
-
 
 print('Generating Returns \n')
 

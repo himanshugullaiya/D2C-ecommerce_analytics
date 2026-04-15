@@ -27,6 +27,7 @@ CREATE MATERIALIZED VIEW gold.revenue_monthly AS (
 	
 	SELECT month_year,
 		total_revenue,
+		total_profit,
 		total_orders,
 		total_customers,
 		for_sorting,

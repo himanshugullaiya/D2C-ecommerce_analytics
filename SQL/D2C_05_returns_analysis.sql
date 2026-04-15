@@ -9,7 +9,7 @@ WITH base_metrics AS (
         
         to_char(o.order_date, 'FMMonth YYYY') AS month_year,
         
-        p.category, p.subcategory, p.brand, p.product_name,
+        p.category, p.subcategory,
         
         ar.return_reason,
         
@@ -28,12 +28,12 @@ WITH base_metrics AS (
     LEFT JOIN silver.order_items oi ON oi.order_id = o.order_id
     LEFT JOIN silver.products p ON p.product_id = oi.product_id
     WHERE o.order_status = 'Returned'
-    GROUP BY 1,2,3,4,5,6,7
+    GROUP BY 1,2,3,4,5
 ),
 
 with_window_funcs AS (
     SELECT *,
-        LAG(total_returns) OVER (PARTITION BY product_name ORDER BY for_sorting) AS prevm_total_returns
+        LAG(total_returns) OVER (PARTITION BY subcategory, return_reason ORDER BY for_sorting) AS prevm_total_returns 
        -- AVG(return_rate_pct_decimal) OVER (PARTITION BY category) AS category_avg_return_rate
     FROM base_metrics
 ),
@@ -53,9 +53,10 @@ SELECT *,
     END AS return_risk_flag,
 */
     CASE 
-	    WHEN mom_return_change > 0 THEN 'Worsening' 
+	    WHEN mom_return_change > 0.05 THEN 'Worsening'
+	    WHEN mom_return_change < -0.05 THEN 'Improving'
 	    ELSE 'Stable' 
-    END AS worsening_flag
+    END AS return_condition_flag
 
 
 FROM with_flags

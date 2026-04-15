@@ -98,3 +98,7 @@ dirty_oi_df['total_sales_curr_order'].sum()
 
 cleaned_o_df['order_amount'].sum()
 cleaned_oi_df['total_sales_curr_order'].sum()
+
+
+
+dirty_returns_df.columns
