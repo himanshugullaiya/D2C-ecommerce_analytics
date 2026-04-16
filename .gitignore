@@ -1,6 +1,5 @@
 data/
 ignore/
-*.csv
 *.pbix
 *.xlsx
 __pycache__/
