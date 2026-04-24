@@ -4,6 +4,7 @@ videos/
 *.pbix
 *.xlsx
 *.mp4
+generate_data.py
 __pycache__/
 *.pyc
 .env
