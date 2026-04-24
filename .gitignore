@@ -1,7 +1,9 @@
 data/
 ignore/
+videos/
 *.pbix
 *.xlsx
+*.mp4
 __pycache__/
 *.pyc
 .env

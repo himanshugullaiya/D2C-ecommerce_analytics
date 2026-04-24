@@ -6,6 +6,33 @@ End-to-end analytics pipeline for a D2C e-commerce business — built entirely f
 
 ---
 
+## Dashboard Preview
+
+<table>
+  <tr>
+    <td align="center"><b>Executive</b></td>
+    <td align="center"><b>Products</b></td>
+    <td align="center"><b>Revenue</b></td>
+  </tr>
+  <tr>
+    <td><img src="Powerbi_Report/GIFS/Executive.gif" width="380"/></td>
+    <td><img src="Powerbi_Report/GIFS/Products.gif" width="380"/></td>
+    <td><img src="Powerbi_Report/GIFS/Revenue.gif" width="380"/></td>
+  </tr>
+  <tr>
+    <td align="center"><b>RFM + Cohort</b></td>
+    <td align="center"><b>Returns</b></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><img src="Powerbi_Report/GIFS/RFM_Cohort.gif" width="380"/></td>
+    <td><img src="Powerbi_Report/GIFS/Returns.gif" width="380"/></td>
+    <td></td>
+  </tr>
+</table>
+
+---
+
 ## What This Project Does
 
 Programmatically generates realistic Indian D2C transactional data, injects production-grade data quality issues, cleans it with a documented Python pipeline, loads to PostgreSQL, and visualizes everything in a 6-tab Power BI dashboard answering real business questions.
@@ -131,6 +158,8 @@ D2C-ecommerce_analytics/
 │   └── gold_*.sql  (6 views)
 ├── Dashboard/
 │   └── HG_Analytics_D2C.pbix
+├── Powerbi_Report/
+│   └── GIFS/
 └── README.md
 ```
 
