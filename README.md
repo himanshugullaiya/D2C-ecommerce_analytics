@@ -40,7 +40,7 @@ End-to-end analytics pipeline for an Indian D2C e-commerce business — built en
 
 ## What This Project Does
 
-Programmatically generates realistic Indian D2C transactional data, injects production-grade data quality issues, cleans it with a documented Python pipeline, loads to PostgreSQL, and visualizes everything in a 6-tab Power BI dashboard answering real business questions.
+Programmatically generates asymmetric realistic Indian D2C transactional data, injects production-grade data quality issues, cleans it with a documented Python pipeline, loads to PostgreSQL, and visualizes everything in a 6-tab Power BI dashboard answering real business questions.
 
 ---
 
