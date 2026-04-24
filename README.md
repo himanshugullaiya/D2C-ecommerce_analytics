@@ -27,6 +27,7 @@ End-to-end analytics pipeline for an Indian D2C e-commerce business — built en
 ---
 
 **RFM + Cohort**
+
 ![RFM Cohort](Powerbi_Report/GIFS/RFM_Cohort.gif)
 
 ---
