@@ -1,6 +1,6 @@
 # HG Analytics — D2C E-Commerce Analytics Dashboard
 
-End-to-end analytics pipeline for a D2C e-commerce business — built entirely from scratch, no public datasets used.
+End-to-end analytics pipeline for an Indian D2C e-commerce business — built entirely from scratch, no public datasets used.
 
 **▶ https://www.youtube.com/@prowealthacademy1/videos &nbsp;|&nbsp; 📊 [Live Dashboard](#)**
 
