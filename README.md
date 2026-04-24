@@ -9,6 +9,7 @@ End-to-end analytics pipeline for an Indian D2C e-commerce business — built en
 ## Dashboard Preview
 
 **Executive**
+
 ![Executive](Powerbi_Report/GIFS/Executive.gif)
 
 ---
