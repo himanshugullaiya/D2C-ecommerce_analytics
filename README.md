@@ -15,11 +15,13 @@ End-to-end analytics pipeline for an Indian D2C e-commerce business — built en
 ---
 
 **Products**
+
 ![Products](Powerbi_Report/GIFS/Products.gif)
 
 ---
 
 **Revenue**
+
 ![Revenue](Powerbi_Report/GIFS/Revenue.gif)
 
 ---
@@ -30,6 +32,7 @@ End-to-end analytics pipeline for an Indian D2C e-commerce business — built en
 ---
 
 **Returns**
+
 ![Returns](Powerbi_Report/GIFS/Returns.gif)
 
 ---
