@@ -65,7 +65,7 @@ Python (generate + dirty + clean)  →  PostgreSQL (silver + gold)  →  Power B
 
 ## Data Generation
 
-- ~134K orders, 13K customers, 84 products across 3 categories
+- ~125K orders, 13K customers, 84 products across 3 categories
 - Indian D2C patterns — Faker for names, weighted city-state CSV, Poisson-distributed order frequency
 - Category-weighted return reasons (electronics → Damaged, clothing → Size Issues / Color Mismatch)
 - Two unit prices — `products.unit_price` (catalog) and `order_items.unit_price_at_purchase` (SCD Type 2)
