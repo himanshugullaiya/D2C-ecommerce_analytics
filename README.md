@@ -3,7 +3,7 @@
 End-to-end analytics pipeline for an Indian D2C e-commerce business — built entirely from scratch, no public datasets used.
 
 
-[![YouTube](https://img.shields.io/badge/YouTube-Watch%20Walkthrough-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/DhayqMWtdis?si=43stEJ92z970gKG7) &nbsp;|&nbsp; 📊 [Live Dashboard](#)
+[![YouTube](https://img.shields.io/badge/YouTube-Watch%20Project%20Walkthrough-grey?style=for-the-badge&logo=youtube&logoColor=white&labelColor=FF0000)](https://youtu.be/DhayqMWtdis?si=43stEJ92z970gKG7) &nbsp;|&nbsp; 📊 [Live Dashboard](#)
 
 ---
 
