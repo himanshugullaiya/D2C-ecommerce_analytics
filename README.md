@@ -74,20 +74,21 @@ Python (generate + dirty + clean)  →  PostgreSQL (silver + gold)  →  Power B
 ---
 
 ## Data Quality — 9 Issues Injected & Fixed
-
-| Issue | Fix |
-|-------|-----|
-| Null values (email, phone, qty) | fillna / smart imputation from related columns |
-| Duplicate rows | drop_duplicates on primary keys |
-| Mixed date formats | pd.to_datetime(dayfirst=True) |
-| Outliers (unit_price, order_amount) | IQR subcategory-wise — not global |
-| Orphan records | Cascade delete orders → order_items |
-| Inconsistent  String Formatting (city case, payment_method) | str.title() |
-| Invalid values (negative age, zero qty) | Replace with mean / derived value |
-| Wrong data types | Strings -> Datetime, numeric)
-| Unsalvageable rows | (dropna thresh=4)
-> Duplicates removed last — earlier cleaning steps create apparent duplicates that only become visible after imputation.
-
+ 
+| # | Issue | Fix |
+|---|-------|-----|
+| 1 | Unsalvageable rows (4+ nulls) | dropna(thresh=4) — drop first, before any cleaning |
+| 2 | Mixed date formats (dash / slash / written) | pd.to_datetime(dayfirst=True) — handles all 3 formats in one shot |
+| 3 | Inconsistent string formatting (city case, payment_method) | str.title() standardization |
+| 4 | Null values (email, phone, qty) | fillna('Unknown') / smart imputation — null qty derived from total ÷ unit_price |
+| 5 | Invalid values (negative age, zero qty) | Negative age → mean of valid ages / zero qty → derived from total ÷ price |
+| 6 | Orphan records (orders with non-existent customer_id) | Cascade delete orders → order_items (referential integrity enforced manually) |
+| 7 | Outliers (unit_price, order_amount) | IQR subcategory-wise — not global; a ₹500 phone is an outlier, a ₹500 t-shirt is not |
+| 8 | Wrong data types (dates as strings, numeric as object) | astype() + pd.to_datetime() + pd.to_numeric() |
+| 9 | Duplicate rows + duplicate primary keys | drop_duplicates() on rows → primary key check → remove imputation-generated duplicates |
+ 
+> **Why duplicates are removed last:** Cleaning steps (fillna → 'Unknown', age imputation) change values differently across duplicate pairs — same customer_id but different ages. Standard drop_duplicates() misses these. Running last catches all cleaning-generated duplicates. Discovered when data model showed many-to-many on customer_id instead of expected one-to-many.
+ 
 ---
 
 ## PostgreSQL — Gold Layer Views
