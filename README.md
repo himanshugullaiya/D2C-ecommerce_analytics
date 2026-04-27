@@ -82,11 +82,10 @@ Python (generate + dirty + clean)  →  PostgreSQL (silver + gold)  →  Power B
 | Mixed date formats | pd.to_datetime(dayfirst=True) |
 | Outliers (unit_price, order_amount) | IQR subcategory-wise — not global |
 | Orphan records | Cascade delete orders → order_items |
-| Inconsistent categories (city case, payment_method) | str.title() |
+| Inconsistent  String Formatting (city case, payment_method) | str.title() |
 | Invalid values (negative age, zero qty) | Replace with mean / derived value |
-| Wrong data types | astype() + to_datetime() |
-| Inconsistent string formats | str.strip().str.title() |
-
+| Wrong data types | Strings -> Datetime, numeric)
+| Unsalvageable rows | (dropna thresh=4)
 > Duplicates removed last — earlier cleaning steps create apparent duplicates that only become visible after imputation.
 
 ---
